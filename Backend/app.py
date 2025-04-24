@@ -84,6 +84,10 @@ def fetch_logs():
 
 
 if __name__ == "__main__":
+    print("Starting PiSentinel server...")
     os.makedirs(CAPTURE_DIR, exist_ok=True)
+    print(f"Capture directory: {CAPTURE_DIR}")
     threading.Thread(target=stream_logs, daemon=True).start()
-    socketio.run(app, host="0.0.0.0", port=5000)
+    print("Log streaming thread started")
+    print("Server running at http://0.0.0.0:5000")
+    socketio.run(app, host="0.0.0.0", port=5000, debug=True)
