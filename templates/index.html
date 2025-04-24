@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PiSentinel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>PiSentinel Dashboard</h1>
+    </header>
+    <main class="container">
+        <!-- System Status Section -->
+        <section class="card">
+            <h2>System Status</h2>
+            <p>Status: <span id="status" class="status-text">Disconnected</span></p>
+            <div class="button-group">
+                <button id="start-monitoring-btn">Start Monitoring</button>
+                <button id="stop-monitoring-btn">Stop Monitoring</button>
+            </div>
+        </section>
+
+        <!-- Captured Logs Section -->
+        <section class="card">
+            <h2>Captured Logs</h2>
+            <div class="log-box" id="log-box">
+                Waiting for logs...
+            </div>
+            <button id="send-deauth-btn">Send Deauth Request</button>
+        </section>
+    </main>
+    <footer>
+        <p>© 2025 PiSentinel. All rights reserved.</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

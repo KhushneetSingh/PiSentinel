@@ -1,16 +1,21 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
 import subprocess
 import os
 import threading
 
-app = Flask(__name__)
+app = Flask(__name__,
+            static_folder='../static',
+            template_folder='../templates')
 socketio = SocketIO(app, cors_allowed_origins="*")
 
-CAPTURE_DIR = "/home/pi/Desktop/PiSentinel/captures"
+CAPTURE_DIR = "/home/pen-test/Desktop/PiSentinel/captures"
 MONITOR_INTERFACE = "wlan1"
 airodump_process = None
 
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 def stream_logs():
     """Continuously stream logs to the frontend."""
