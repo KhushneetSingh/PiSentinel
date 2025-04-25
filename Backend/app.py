@@ -1,17 +1,17 @@
-from flask import Flask, render_template
-from flask_socketio import SocketIO, emit
-import subprocess
-import os
-import threading
+# from flask import Flask, render_template
+# from flask_socketio import SocketIO, emit
+# import subprocess
+# import os
+# import threading
 
-app = Flask(__name__,
-            static_folder='../static',
-            template_folder='../templates')
-socketio = SocketIO(app, cors_allowed_origins="*")
+# app = Flask(__name__,
+#             static_folder='../static',
+#             template_folder='../templates')
+# socketio = SocketIO(app, cors_allowed_origins="*")
 
-CAPTURE_DIR = "/home/pen-test/Desktop/PiSentinel/captures"
-MONITOR_INTERFACE = "wlan1"
-airodump_process = None
+# CAPTURE_DIR = "/home/pen-test/Desktop/PiSentinel/captures"
+# MONITOR_INTERFACE = "wlan1"
+# airodump_process = None
 
 @app.route('/')
 def index():
@@ -88,11 +88,11 @@ def fetch_logs():
         emit("log_update", {"logs": [f"Error: {str(e)}"]})
 
 
-if __name__ == "__main__":
-    print("Starting PiSentinel server...")
-    os.makedirs(CAPTURE_DIR, exist_ok=True)
-    print(f"Capture directory: {CAPTURE_DIR}")
-    threading.Thread(target=stream_logs, daemon=True).start()
-    print("Log streaming thread started")
-    print("Server running at http://0.0.0.0:5000")
-    socketio.run(app, host="0.0.0.0", port=5000, debug=True)
+# if __name__ == "__main__":
+#     print("Starting PiSentinel server...")
+#     os.makedirs(CAPTURE_DIR, exist_ok=True)
+#     print(f"Capture directory: {CAPTURE_DIR}")
+#     threading.Thread(target=stream_logs, daemon=True).start()
+#     print("Log streaming thread started")
+#     print("Server running at http://0.0.0.0:5000")
+#     socketio.run(app, host="0.0.0.0", port=5000, debug=True)

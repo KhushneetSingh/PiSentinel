@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PiSentinel</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Use relative path for CSS -->
+    <link rel="stylesheet" href="../static/styles.css">
 </head>
 <body>
     <header>
@@ -33,7 +34,7 @@
     <footer>
         <p>© 2025 PiSentinel. All rights reserved.</p>
     </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <!-- Use relative path for JavaScript -->
+    <script src="../static/script.js"></script>
 </body>
 </html>
