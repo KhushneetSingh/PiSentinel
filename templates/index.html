@@ -4,37 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PiSentinel</title>
-    <!-- Use relative path for CSS -->
-    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <header>
         <h1>PiSentinel Dashboard</h1>
+        <div id="connection-status">Connecting...</div>
     </header>
-    <main class="container">
-        <!-- System Status Section -->
-        <section class="card">
-            <h2>System Status</h2>
-            <p>Status: <span id="status" class="status-text">Disconnected</span></p>
+    <div class="container">
+        <div class="card">
+            <h2>System Information</h2>
+            <p>Server IP: <span id="server-ip">Detecting...</span></p>
+            <p>Status: <span id="status">Disconnected</span></p>
+            <div class="form-group">
+                <label for="interface-select">Wireless Interface:</label>
+                <select id="interface-select">
+                    <option value="">Loading interfaces...</option>
+                </select>
+            </div>
             <div class="button-group">
                 <button id="start-monitoring-btn">Start Monitoring</button>
                 <button id="stop-monitoring-btn">Stop Monitoring</button>
+                <button id="refresh-info-btn">Refresh Info</button>
             </div>
-        </section>
+        </div>
 
-        <!-- Captured Logs Section -->
-        <section class="card">
-            <h2>Captured Logs</h2>
+        <div class="card">
+            <h2>Network Activity</h2>
             <div class="log-box" id="log-box">
                 Waiting for logs...
             </div>
-            <button id="send-deauth-btn">Send Deauth Request</button>
-        </section>
-    </main>
+            <div class="button-group">
+                <button id="send-deauth-btn">Send Deauth Request</button>
+                <button id="clear-logs-btn">Clear Display</button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Captured Files</h2>
+            <div class="log-box" id="files-box">
+                No capture files yet...
+            </div>
+        </div>
+    </div>
+
     <footer>
-        <p>© 2025 PiSentinel. All rights reserved.</p>
+        <p>PiSentinel v1.0 - Wireless Monitoring Tool</p>
     </footer>
-    <!-- Use relative path for JavaScript -->
-    <script src="../static/script.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
