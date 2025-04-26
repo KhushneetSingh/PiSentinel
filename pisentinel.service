@@ -1,0 +1,14 @@
+[Unit]
+Description=PiSentinel Wireless Monitoring Service
+After=network.target
+
+[Service]
+ExecStart=/bin/bash /home/pen-test/Desktop/PiSentinel/startup.sh
+WorkingDirectory=/home/pen-test/Desktop/PiSentinel
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
