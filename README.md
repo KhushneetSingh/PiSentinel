@@ -2,6 +2,10 @@
 
 A comprehensive wireless penetration testing tool that provides a web-based dashboard for network reconnaissance, deauthentication attacks, and packet capture analysis.
 
+# Note
+
+`main` for the latest stable version, or `design` for the latest UI/UX updates in progress.
+
 ## Features
 
 - **Web Dashboard**: Clean, intuitive interface accessible via browser
