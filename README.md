@@ -4,7 +4,9 @@ A comprehensive wireless penetration testing tool that provides a web-based dash
 
 # Note
 
-`main` for the latest stable version, or `design` for the latest UI/UX updates in progress.
+- **`mod2`** Branch for the nextVersion and fork from Here.
+- **`main`** The latest stable version.
+- **`design`** For the latest UI/UX updates in progress.
 
 ## Features
 
@@ -266,7 +268,7 @@ portable-pentesting-device/
 
 ### Contributing
 1. Fork the repository
-2. Create a feature branch
+2. Create a feature branch from `mod2` branch
 3. Make your changes
 4. Test thoroughly
 5. Submit a pull request
