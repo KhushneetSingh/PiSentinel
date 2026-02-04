@@ -4,7 +4,9 @@ A comprehensive wireless penetration testing tool that provides a web-based dash
 
 # Note
 
-`main` for the latest stable version, or `design` for the latest UI/UX updates in progress.
+mod2 Branch for the nextVersion and fork from Here.
+main The latest stable version.
+design For the latest UI/UX updates in progress.
 
 ## Features
 
