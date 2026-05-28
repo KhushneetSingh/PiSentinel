@@ -1,0 +1,25 @@
+[Unit]
+Description=PiSentinel - Wireless Penetration Testing Dashboard
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/home/pen-test/Desktop/PiSentinel
+ExecStart=/bin/bash /home/pen-test/Desktop/PiSentinel/startup.sh
+Restart=on-failure
+RestartSec=10
+StandardOutput=append:/home/pen-test/Desktop/PiSentinel/logs/pisentinel.log
+StandardError=append:/home/pen-test/Desktop/PiSentinel/logs/pisentinel.log
+
+# Hardening
+ProtectSystem=false
+PrivateTmp=true
+
+# Environment
+Environment=PISENTINEL_INTERFACE=wlan1
+Environment=PISENTINEL_PORT=5000
+
+[Install]
+WantedBy=multi-user.target

@@ -56,14 +56,14 @@ sudo apt install -y python3 python3-pip git aircrack-ng hostapd dhcp-helper brid
 
 Install Python dependencies:
 ```bash
-pip3 install flask flask-socketio scapy psutil threading subprocess
+pip3 install -r requirements.txt
 ```
 
 ### Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/portable-pentesting-device.git
-cd portable-pentesting-device
+git clone https://github.com/KhushneetSingh/PiSentinel.git
+cd PiSentinel
 ```
 
 ### Setup Instructions
@@ -120,9 +120,11 @@ iwconfig
 ip link show
 ```
 
-Edit `config.py` and update the interface name:
-```python
-WIFI_INTERFACE = "wlan1"  # Replace with your adapter name
+Edit `Backend/config.py` and update the interface name, or set the environment variable:
+```bash
+# Option 1: Edit Backend/config.py directly
+# Option 2: Set environment variable
+export PISENTINEL_INTERFACE="wlan1"  # Replace with your adapter name
 ```
 
 ### 2. Set Monitor Mode
@@ -135,16 +137,16 @@ sudo airmon-ng start wlan1
 
 ### 3. Configure Dashboard Settings
 
-Edit `config.py` for custom settings:
-```python
-# Dashboard settings
-DASHBOARD_HOST = "0.0.0.0"  # Listen on all interfaces
-DASHBOARD_PORT = 8080
-DEBUG_MODE = False
+Edit `Backend/config.py` for custom settings, or use environment variables:
+```bash
+# Server settings
+export PISENTINEL_HOST="0.0.0.0"    # Listen on all interfaces
+export PISENTINEL_PORT=5000          # Dashboard port
+export PISENTINEL_DEBUG=false         # Debug mode
 
-# Security settings
-REQUIRE_AUTH = True  # Set to False for open access
-DEFAULT_PASSWORD = "pentesting123"  # Change this!
+# Paths
+export PISENTINEL_CAPTURE_DIR="/path/to/captures"
+export PISENTINEL_LOG_DIR="/path/to/logs"
 ```
 
 ## Usage
@@ -153,7 +155,7 @@ DEFAULT_PASSWORD = "pentesting123"  # Change this!
 
 #### Method 1: Direct Python Execution
 ```bash
-cd portable-pentesting-device
+cd PiSentinel/Backend
 sudo python3 app.py
 ```
 
@@ -174,13 +176,13 @@ ip addr show
 
 2. **Open web browser** and navigate to:
 ```
-http://[DEVICE_IP]:8080
+http://[DEVICE_IP]:5000
 ```
-Example: `http://192.168.1.100:8080`
+Example: `http://192.168.1.100:5000`
 
 3. **For Raspberry Pi headless setup**, you can also try:
 ```
-http://raspberrypi.local:8080
+http://raspberrypi.local:5000
 ```
 
 ### Using the Interface
@@ -194,24 +196,22 @@ http://raspberrypi.local:8080
 ## File Structure
 
 ```
-portable-pentesting-device/
-├── app.py                 # Main application
-├── config.py             # Configuration settings
+PiSentinel/
+├── Backend/
+│   ├── app.py             # Main Flask + SocketIO application
+│   └── config.py          # Centralized configuration
 ├── static/
-│   ├── css/
-│   │   └── style.css     # Dashboard styling
-│   └── js/
-│       └── main.js       # Frontend JavaScript
+│   ├── styles.css          # Dashboard styling
+│   └── script.js           # Frontend JavaScript
 ├── templates/
-│   └── index.html        # Web interface template
-├── utils/
-│   ├── network_scanner.py # Network scanning utilities
-│   ├── deauth_attack.py   # Deauthentication attack tools
-│   └── packet_capture.py # Packet capture functionality
-├── logs/                 # Application logs
-├── captures/             # Captured packets storage
-├── pentesting-device.service # Systemd service file
-└── README.md            # This file
+│   └── index.html          # Web interface template (Jinja2)
+├── captures/               # Captured packets (.pcap / .cap)
+├── logs/                   # Application logs (auto-rotated)
+├── pisentinel.service       # Systemd service file
+├── startup.sh               # Startup / bootstrap script
+├── requirements.txt         # Python dependencies
+├── LICENSE                  # MIT License
+└── README.md               # This file
 ```
 
 ## Troubleshooting

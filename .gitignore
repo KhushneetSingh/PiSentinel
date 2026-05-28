@@ -1,3 +1,31 @@
 # Environment
 .venv
 venv
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# Application data
+logs/
+captures/
+*.pcap
+*.cap
+*.log
+startup.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
